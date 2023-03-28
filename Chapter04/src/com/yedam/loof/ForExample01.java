@@ -126,12 +126,10 @@ public class ForExample01 {
 			if(i == 5) {
 				System.out.println("실패하였습니다");
 				System.out.println("정답 : " + randomNo);
-			}
+			} // 이게 가장 위에 있다면 5번째 기회에 정답을 맞춰도 이게 실행됨ㅇㅇ
 		}
 
-		//System.out.println("실패하였습니다.");
-		
-		
+			
 	}
 
 }
