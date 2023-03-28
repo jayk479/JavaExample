@@ -103,28 +103,32 @@ public class ForExample01 {
 		// 실패하였습니다.
 		
 		int randomNo = (int)(Math.random()*100)+1;
-		//System.out.println(randomNo);
+		System.out.println(randomNo);
 		for(int i = 1; i <= 5; i++) {
 			System.out.println("숫자 입력>");
 			int guessNo = sc.nextInt();
 			if(guessNo > randomNo) {
 				System.out.println("down");
-				if(i == 5) {
-					System.out.println("실패하였습니다.");
-					System.out.println("정답 : " + randomNo);
-				}
+//				if(i == 5) {
+//					System.out.println("실패하였습니다.");
+//					System.out.println("정답 : " + randomNo);
+//				}
 			}else if(guessNo < randomNo) {
 				System.out.println("up");
-				if(i == 5) {
-					System.out.println("실패하였습니다");
-					System.out.println("정답 : " + randomNo);
-				}
+//				if(i == 5) {
+//					System.out.println("실패하였습니다");
+//					System.out.println("정답 : " + randomNo);
+//				}
 			}else if(guessNo == randomNo) {
 				System.out.println("정답 "+i+"번의 기회만에 맞추셨습니다.");
 				break;
 			}
-			
+			if(i == 5) {
+				System.out.println("실패하였습니다");
+				System.out.println("정답 : " + randomNo);
+			}
 		}
+
 		//System.out.println("실패하였습니다.");
 		
 		
