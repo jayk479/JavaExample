@@ -98,7 +98,7 @@ public class Homework230327 {
 		int value = 485;
 		System.out.println(value/100+(value-100*4)/10+value%10);
 		System.out.println(value/100+(value-100*4)/10+(value-10*48));
-		
+
 		
 	}
 
