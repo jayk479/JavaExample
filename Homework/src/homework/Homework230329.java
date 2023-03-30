@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Homework230329 {
 
 	public static void main(String[] args) {
-//		//주어진 배열을 이용하여 다음 내용을 구현하세요.
+		//주어진 배열을 이용하여 다음 내용을 구현하세요.
 		int[] arr1 = { 10, 20, 30, 50, 3, 60, -3 };
 		int indexNo = 0;
 		
