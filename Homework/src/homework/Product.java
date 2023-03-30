@@ -13,10 +13,18 @@ public class Product {
 		this.price = price;
 	}
 	
-//	public void maxPrice() {
-//		int max = 0;
-//		if(max < price) {
-//			max = price;
+	public int maxPrice() {
+		int max = 0;
+		// Product[] products = new Product();
+		if(max < price) {
+			max = price;
+		}
+		return max;
+//		for (int i = 0; i < products.length; i++) {
+//			if(max < products[i].price) {
+//				max = products[i].price;
+//			}
 //		}
+		
 	}
 }
