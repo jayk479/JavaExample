@@ -36,7 +36,7 @@ public class WhileExample01 {
 //				System.out.println("프로그램 종료");
 //				break;
 //			}
-//		}
+//		}`
 		
 		// 오락실
 		int money;
