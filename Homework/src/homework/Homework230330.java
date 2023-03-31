@@ -48,10 +48,12 @@ public class Homework230330 {
 				// 4) 분석기능은 최고 가격을 가지는 제품과 해당 제품을 제외한 제품들의 총합을 구합니다.
 				int max = 0;
 				int sum = 0;
+					
 				for (int i = 0; i < products.length; i++) {
 					if(max < products[i].price) {
-					max = products[i].price;
+						max = products[i].price;
 					}
+					
 				}
 				for (int i = 0; i < products.length; i++) {
 					if(max != products[i].price) {
