@@ -4,6 +4,7 @@ public class Product {
 
 	String productName;
 	int price;
+	// Product[] products = null;
 	
 	public Product() {
 		
@@ -20,11 +21,7 @@ public class Product {
 			max = price;
 		}
 		return max;
-//		for (int i = 0; i < products.length; i++) {
-//			if(max < products[i].price) {
-//				max = products[i].price;
-//			}
-//		}
+
 		
 	}
 }
