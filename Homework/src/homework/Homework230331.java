@@ -25,7 +25,8 @@ public class Homework230331 {
 //	이름:이지나  연봉:3000  부서:교육부
 //	수퍼클래스
 //	서브클래스
-//
+		EmpDept a1 = new EmpDept("이지나", 3000, "교육부");
+		a1.getInformation();
 //
 //Question 2]
 //1) Human 클래스를 정의한다.
@@ -54,6 +55,9 @@ public class Homework230331 {
 //	박둘이님의 신장 168, 몸무게 90, 비만입니다.
 //- 조건
 //	변수는 Human 클래스 타입으로 선언하여 하나만 사용한다.
+		
+		Human a2 = new Human("홍길동", 168, 45);
+		a2.getInformation();
 		
 		
 	}
