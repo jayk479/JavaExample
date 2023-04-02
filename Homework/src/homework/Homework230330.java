@@ -60,7 +60,6 @@ public class Homework230330 {
 				}
 				System.out.println("최고가격 : " + max);
 				System.out.println("총합 가격 : " + sum);
-				
 			}else if(selectNo.equals("5")) {
 				System.out.println("프로그램 종료");
 				break;
@@ -69,9 +68,6 @@ public class Homework230330 {
 			}
 			
 		}
-		
-		
-
 	}
 
 }
