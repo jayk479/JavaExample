@@ -56,8 +56,13 @@ public class Homework230331 {
 //- 조건
 //	변수는 Human 클래스 타입으로 선언하여 하나만 사용한다.
 		
-		Human a2 = new Human("홍길동", 168, 45);
-		a2.getInformation();
+		Human human = null;
+		
+		human = new StandardWeightInfo("홍길동", 168, 45);
+		human.getInformation();
+		
+		human = new ObesityInfo("박돌이", 168, 90);
+		human.getInformation();
 		
 		
 	}
