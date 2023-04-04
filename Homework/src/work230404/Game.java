@@ -22,11 +22,7 @@ public class Game {
 		boolean run = true;
 		StringGame game = new StringGame();
 		// StringGame 클래스만들어 game.~~~
-		String[] gameVocas = {"Orange", "Game", "Phone", "Smart"};
-		int gameRd = (int)(Math.random()*4);
-		System.out.println(gameRd);
-		String gameVoca = gameVocas[gameRd];
-		System.out.println(gameVoca);
+		
 		while(run) {
 			System.out.println("---------------------------------------------");
 			System.out.println(" 1.문자하나 | 2.단어 | 3.입력내역 | 4.새 게임 | 5.종료 ");
