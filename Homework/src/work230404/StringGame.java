@@ -16,8 +16,8 @@ public class StringGame {
 	public void setCharData() {
 		gameRd = (int)(Math.random()*4);
 		gameVoca = gameVocas[gameRd];
-//		System.out.println(gameRd);
-//		System.out.println(gameVoca);
+		System.out.println(gameRd);
+		System.out.println(gameVoca);
 		
 		System.out.println("문자 입력> ");
 		for (int i = 0; i < gameVoca.length(); i++) {
@@ -26,12 +26,11 @@ public class StringGame {
 				game += alp;
 				//대소문자구분없이하고싶음ㅇㅇ
 				//중복값제거어떻게함?
-//				for (int j = 0; j < game.length(); j++) {
-//					if(game.contains(String.valueOf(alp))) {
-//						System.out.println("중복");
-//						j--;
-//					}
+//				if(game.contains(String.valueOf(alp))) {
+//					System.out.println("중복");
+//					i--;
 //				}
+
 				System.out.println("문자열을 구성하는 문자");
 			}else {
 				 System.out.println("문자열을 구성하는 문자가 아닙니다.");
