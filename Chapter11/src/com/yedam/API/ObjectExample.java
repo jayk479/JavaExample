@@ -21,13 +21,19 @@ public class ObjectExample {
 		HashMap<Key, String> hashMap2 = new HashMap<>();
 		
 		//이하 안 됨ㅇㅇ
-		hashMap2.put(new Member("열쇠"), "또치");
+		//hashMap2.put(new Member("열쇠"), "또치");
 		
 		String value2 = hashMap2.get(new Member("열쇠"));
 		
 		System.out.println(value2);
+		System.out.println("=====================");
+		Object obj = new Object();
+		System.out.println(obj.toString());
+		
+		System.out.println(member);
+		System.out.println(member2);
+		System.out.println(member3);
+	
 	}
-	
-	
 
 }

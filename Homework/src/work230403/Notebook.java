@@ -5,4 +5,5 @@ public interface Notebook {
 	
 	public abstract void writeDocumentaion();
 	public abstract void searchInternet();
+	//public abstract void changeMode();
 }

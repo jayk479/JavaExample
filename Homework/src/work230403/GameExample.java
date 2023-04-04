@@ -5,7 +5,7 @@ public class GameExample {
 	public static void main(String[] args) {
 		Keypad key = new RPGgame();
 		
-		System.out.println("RPGgame실행");
+		//System.out.println("RPGgame실행");
 		key.leftUpButton();
 		key.rightUpButton(); 
 		key.changeMode(); 
@@ -16,7 +16,7 @@ public class GameExample {
 		key.rightDownButton();
 		
 		System.out.println("--------------");
-		System.out.println("ArcadeGame실행");
+		//System.out.println("ArcadeGame실행");
 		key = new ArcadeGame();
 		key.leftUpButton();
 		key.rightUpButton();

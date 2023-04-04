@@ -2,6 +2,11 @@ package com.yedam.API;
 
 public class Member {
 	
+//	@Override
+//	public String toString() {
+//		return "Member [id=" + id + "]"; //자바에서 제공되는 기본 형식
+//	}
+
 	public String id;
 	
 	public Member(String id) {

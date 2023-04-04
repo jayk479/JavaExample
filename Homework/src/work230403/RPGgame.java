@@ -3,6 +3,11 @@ package work230403;
 public class RPGgame implements Keypad{
 	
 	private int mode;
+	
+	public RPGgame() {
+		mode = Keypad.NORMAL_MODE;
+		System.out.println("RPGgame 실행");
+	}
 
 	@Override
 	public void leftUpButton() {
@@ -16,32 +21,42 @@ public class RPGgame implements Keypad{
 
 	@Override
 	public void rightUpButton() {
-		if(mode == NORMAL_MODE) {
+		if(mode == Keypad.NORMAL_MODE) {
 			System.out.println("캐릭터가 한칸단위로 점프한다.");
-		}else if(mode == HARD_MODE){
+		}else if(mode == Keypad.HARD_MODE){
 			System.out.println("캐릭터가 두칸단위로 점프한다.");
 		}
 	}
 
 	@Override
 	public void rightDownButton() {
-		if(mode == NORMAL_MODE) {
+		if(mode == Keypad.NORMAL_MODE) {
 			System.out.println("캐릭터가일반공격");
-		}else if(mode == HARD_MODE){
+		}else if(mode == Keypad.HARD_MODE){
 			System.out.println("캐릭터가 HIT 공격");
 		}
 	}
 
 	@Override
 	public void changeMode() {
-
-		if(mode == NORMAL_MODE) {
-			mode = HARD_MODE;
+		if(mode == Keypad.NORMAL_MODE) {
+			mode = Keypad.HARD_MODE;
 			System.out.println("현재모드 : HARD_MODE");
-		}else if(mode == HARD_MODE) {
-			mode = NORMAL_MODE;
+		}else if(mode == Keypad.HARD_MODE) {
+			mode = Keypad.NORMAL_MODE;
 			System.out.println("현재모드 : NORMAL_MODE");
 		}
+		
+//		switch (mode) {
+//		case Keypad.NORMAL_MODE:
+//			mode = Keypad.HARD_MODE;
+//			System.out.println("현재모드 : HARD_MODE");
+//			break;
+//		case Keypad.HARD_MODE:
+//			mode = Keypad.NORMAL_MODE;
+//			System.out.println("현재모드 : NORMAL_MODE");
+//			break;
+//		}
 	}
 	
 	
