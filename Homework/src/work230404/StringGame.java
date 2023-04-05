@@ -15,31 +15,29 @@ public class StringGame {
 	
 	public void setCharData() {
 		gameRd = (int)(Math.random()*4);
-		gameVoca = gameVocas[gameRd];
+		gameVoca = gameVocas[gameRd].toLowerCase();
 		System.out.println(gameRd);
 		System.out.println(gameVoca);
 		
 		System.out.println("문자 입력> ");
 		for (int i = 0; i < gameVoca.length(); i++) {
 			alp = sc.nextLine().charAt(0);
-			if(gameVocas[gameRd].contains(String.valueOf(alp))) {
+			if(gameVoca.contains(String.valueOf(alp))) {
 				game += alp;
-				//대소문자구분없이하고싶음ㅇㅇ
 				//중복값제거어떻게함?
 //				if(game.contains(String.valueOf(alp))) {
 //					System.out.println("중복");
 //					i--;
 //				}
-
 				System.out.println("문자열을 구성하는 문자");
+				System.out.println("현재까지 확인된 문자들은 다음과 같습니다.");
+				for (int j = 4; j < game.length(); j++) {
+					System.out.print(game.charAt(j)+" ");
+				}
 			}else {
 				 System.out.println("문자열을 구성하는 문자가 아닙니다.");
 			}
-			System.out.println("현재까지 확인된 문자들은 다음과 같습니다.");
-			for (int j = 4; j < game.length(); j++) {
-				//처음부터 틀린 스펠링이면 어떻게 함?
-				System.out.print(game.charAt(j)+" ");
-			}
+			
 		}
 		System.out.println();
 	}
@@ -82,7 +80,7 @@ public class StringGame {
 		System.out.println("입력 값>> ");
 		String answer = sc.nextLine();
 		if(answer.equals(gameVoca)) {
-			System.out.println("정답입니다.");
+			System.out.println("정답");
 		}else {
 			System.out.println("정답아님");
 		}
