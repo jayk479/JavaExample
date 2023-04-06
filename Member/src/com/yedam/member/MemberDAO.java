@@ -10,10 +10,11 @@ public class MemberDAO extends DAO{
 	// 로그인 - login()
 	// 로그아웃 - logout()
 	
+	// 싱글톤
 	private static MemberDAO memberDao = null;
-	
+	//제한 	공유		클래스	변수			객체	생성
 	private MemberDAO() {
-		
+		// 객체x
 	}
 	public static MemberDAO getInstance() {
 		if(memberDao == null) {
