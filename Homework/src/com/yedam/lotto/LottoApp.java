@@ -100,7 +100,8 @@ public class LottoApp {
 //			}
 //			lotto[i] += num;
 //			System.out.print(lotto[i]+" ");
-		lotto = new int[6];
+		lotto = new int[6]; // 번호 생성 할 때마다 새로운 lotto배열에 넣어준다.
+							// 그래야 list에 넣어줘도 마지막 값만 출력되지 않음ㅇㅇ
 		for (int i = 0; i < lotto.length; i++) {	
 			lotto[i] = (int)(Math.random()*45)+1;
 			if(i>0) {
