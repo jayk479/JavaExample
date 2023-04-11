@@ -32,6 +32,7 @@ public class MemberService {
 			System.out.println("아이디오류");
 		}	
 	}
+	
 	public void logout() {
 		if(memberInfo != null) {
 			memberInfo = null;
@@ -48,7 +49,7 @@ public class MemberService {
 		System.out.println("이름> ");
 		String name = sc.nextLine();
 //		System.out.println("생년월일> ");
-//		Date birth = Integer.parseInt(sc.nextLine());
+//		String birth = sc.nextLine();
 		
 		
 		member.setId(id);
@@ -94,14 +95,82 @@ public class MemberService {
 		}else {
 			System.out.println("수정실패");
 		}
+
+	}
+	public void updateMemberInfo() {
 		
+//		Member member = new Member();
+//		System.out.println("패스워드재입력> ");
+//		String pw = sc.nextLine();
+//		
+//		if(member.getPw().equals(pw)) {
+//			System.out.println("수정할메일> ");
+//			String mail = sc.nextLine();
+//			System.out.println("수정할주소> ");
+//			String address = sc.nextLine();
+//			
+//			member.setPw(pw);
+//			member.setMail(mail);
+//			member.setAddress(address);
+//			int result = MemberDAO.getInstance().updateMemberInfo(member, pw);
+//			if(result > 0) {
+//				System.out.println("수정성공");
+//			}else {
+//				System.out.println("수정실패");
+//			}
+//			
+//		}else {
+//			System.out.println("비밀번호불일치");
+//		}
+
+		Member member = new Member();
+		System.out.println("패스워드재입력> ");
+		String pw = sc.nextLine();
+		System.out.println("수정할메일> ");
+		String mail = sc.nextLine();
+		System.out.println("수정할주소> ");
+		String address = sc.nextLine();
 		
+		member.setPw(pw);
+		member.setMail(mail);
+		member.setAddress(address);
 		
-		
-		
-		
-		
+		int result = MemberDAO.getInstance().updateMemberInfo(member, pw);
+		if(result > 0) {
+			System.out.println("수정성공");
+		}else {
+			System.out.println("수정실패");
+		}
 		
 	}
+	
+	public void memberDelete() {
+		System.out.println("비밀번호재입력> ");
+		String memberPw = sc.nextLine();
+		int result = MemberDAO.getInstance().memberDelete(memberPw);
+		// 비밀번호 같으면 같이 삭제되어버림ㅇㅇ 그리고 비밀번호 틀리면 로그아웃되어버림
+		if(MemberService.memberInfo.getPw().equals(memberPw)) {
+			if(result > 0) {
+				System.out.println("회원탈퇴완료");
+			}else {
+				System.out.println("회원탈퇴실패");
+			}
+		}else {
+			System.out.println("비밀번호불일치");
+		}
+	
+	}
+	
+	public void memberDelete2() {
+		System.out.println("삭제할멤버아이디> ");
+		int memberId = Integer.parseInt(sc.nextLine());
+		int result = MemberDAO.getInstance().memberDelete2(memberId);
+		if(result > 0) {
+			System.out.println("강제탈퇴완료");
+		}else {
+			System.out.println("강제탈퇴실패");
+		}
+	}
+
 	
 }

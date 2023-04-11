@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Member {
 
-	private int memberId;
+	private int memberId; //영구결번해그냥
 	private String memberName;
 	private Date birth;
 	private int departmentId;

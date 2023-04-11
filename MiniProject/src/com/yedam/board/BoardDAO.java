@@ -16,9 +16,9 @@ public class BoardDAO extends DAO{
 		return boardDao;
 	}
 	
-	public List<BoardDTO> getBoardList(){
-		List<BoardDTO> list = new ArrayList<>();
-		BoardDTO board1 = null;
+	public List<Board> getBoardList(){
+		List<Board> list = new ArrayList<>();
+		Board board1 = null;
 		
 		try {
 			conn();
@@ -27,8 +27,8 @@ public class BoardDAO extends DAO{
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				board1 = new BoardDTO();
-				board1.setTitleNo(rs.getInt("title_no"));
+				board1 = new Board();
+				board1.setIndexNo(rs.getInt("index_no"));
 				board1.setTitle(rs.getString("title"));
 				board1.setContent(rs.getString("content"));
 				board1.setWriter(rs.getString("writer"));
@@ -43,16 +43,16 @@ public class BoardDAO extends DAO{
 		return list;
 	}
 	
-	public int updateBoard(BoardDTO board) {
+	public int updateBoard(Board board) {
 		int result = 0;
 		try {
 			conn();
-			String sql = "UPDATE BOARD1 SET TITLE = ?, CONTENT = ? WHERE TITEL_NO = ?";
+			String sql = "UPDATE BOARD1 SET TITLE = ?, CONTENT = ? WHERE INDEX_NO = ?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
-			pstmt.setInt(3, board.getTitleNo());
+			pstmt.setInt(3, board.getIndexNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -61,7 +61,151 @@ public class BoardDAO extends DAO{
 		}finally {
 			disconn();
 		}
+		return result;
+	}
+	
+	public int boardAdd(Board board) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "INSERT INTO BOARD1 VALUES ((SELECT MAX(INDEX_NO)+1 FROM BOARD1), ?, ?, 'ADMIN', SYSDATE)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
+	
+	public int boardDelete(int indexNo) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "DELETE FROM BOARD1 WHERE INDEX_NO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, indexNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
 		
 		return result;
 	}
+	
+	public List<Board> getBoard2List(){
+		List<Board> list = new ArrayList<>();
+		Board board2 = null;
+		
+		try {
+			conn();
+			String sql = "SELECT INDEX_NO2, TITLE2, WRITE_DATE2 FROM BOARD2";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				board2 = new Board();
+				board2.setIndexNo(rs.getInt("index_no2"));
+				board2.setTitle(rs.getString("title2"));
+				board2.setWriteDate(rs.getDate("write_date2"));
+				list.add(board2);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public Board getContent(int indexNo) {
+		Board board = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM BOARD2 WHERE INDEX_NO2 = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, indexNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board = new Board();
+				board.setIndexNo(rs.getInt("index_no2"));
+				board.setTitle(rs.getString("title2"));
+				board.setContent(rs.getString("content2"));
+				board.setWriteDate(rs.getDate("write_date2"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			disconn();
+		}
+		return board;
+	}
+	
+	public int boardAdd2(Board board) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "INSERT INTO BOARD2 VALUES ((SELECT MAX(INDEX_NO2)+1 FROM BOARD2), ?, ?, SYSDATE)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
+	
+	public int updateBoard2(Board board) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "UPDATE BOARD2 SET TITLE2 = ?, CONTENT2 = ? WHERE INDEX_NO2 = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getIndexNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
+	
+	public int boardDelete2(int indexNo) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "DELETE FROM BOARD2 WHERE INDEX_NO2 = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, indexNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		
+		return result;
+	}
+	
 }

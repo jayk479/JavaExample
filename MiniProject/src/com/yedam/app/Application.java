@@ -22,7 +22,7 @@ public class Application {
 			if(menu == 1) {
 				ms.login();
 				if(MemberService.memberInfo != null) {
-					new Management();
+					new MemberControl();
 				}
 			}else if(menu == 2) {
 				ms.memberAdd();
@@ -30,7 +30,7 @@ public class Application {
 				System.out.println("프로그램종료");
 				break;
 			}else {
-				System.out.println("번호잘못입력");
+				System.out.println("오입력");
 			}
 		}
 	}

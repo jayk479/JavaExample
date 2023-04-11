@@ -106,8 +106,67 @@ public class MemberDAO extends DAO{
 		}finally {
 			disconn();
 		}
+		return result;
+	}
+	
+	public int updateMemberInfo(Member member, String memberPw) {
+		int result = 0;
+	
+		try {
+			conn();
+			String sql = "SELECT * FROM MEMBER WHERE PW = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberPw);
+			
+			result = pstmt.executeUpdate();
+			if(result > 0) {
+				String sql2 = "UPDATE MEMBER SET MAIL = ? , ADDRESS = ? WHERE PW = ?";
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setString(1, member.getMail());
+				pstmt.setString(2, member.getAddress());
+				pstmt.setString(3, member.getPw());
 				
+				result = pstmt.executeUpdate();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
+	
+	public int memberDelete(String memberPw) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "DELETE FROM MEMBER WHERE PW = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberPw);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
 		return result;
 	}
 
+	public int memberDelete2(int memberId) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "DELETE FROM MEMBER WHERE MEMBER_ID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberId);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
 }
