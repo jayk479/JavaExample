@@ -9,6 +9,6 @@ public class Board {
 	private int indexNo;
 	private String title;
 	private String content;
-	private String writer;
+	private String memberName;
 	private Date writeDate;
 }

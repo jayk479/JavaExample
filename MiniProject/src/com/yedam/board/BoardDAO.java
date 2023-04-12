@@ -16,6 +16,7 @@ public class BoardDAO extends DAO{
 		return boardDao;
 	}
 	
+	// 공지사항목록
 	public List<Board> getBoardList(){
 		List<Board> list = new ArrayList<>();
 		Board board1 = null;
@@ -31,7 +32,7 @@ public class BoardDAO extends DAO{
 				board1.setIndexNo(rs.getInt("index_no"));
 				board1.setTitle(rs.getString("title"));
 				board1.setContent(rs.getString("content"));
-				board1.setWriter(rs.getString("writer"));
+				board1.setMemberName(rs.getString("writer"));
 				board1.setWriteDate(rs.getDate("write_date"));
 				list.add(board1);
 			}
@@ -43,6 +44,7 @@ public class BoardDAO extends DAO{
 		return list;
 	}
 	
+	// 공지수정
 	public int updateBoard(Board board) {
 		int result = 0;
 		try {
@@ -64,6 +66,7 @@ public class BoardDAO extends DAO{
 		return result;
 	}
 	
+	// 공지추가
 	public int boardAdd(Board board) {
 		int result = 0;
 		try {
@@ -83,6 +86,7 @@ public class BoardDAO extends DAO{
 		return result;
 	}
 	
+	// 공지삭제
 	public int boardDelete(int indexNo) {
 		int result = 0;
 		try {
@@ -101,6 +105,7 @@ public class BoardDAO extends DAO{
 		return result;
 	}
 	
+	// 게시판목록
 	public List<Board> getBoard2List(){
 		List<Board> list = new ArrayList<>();
 		Board board2 = null;
@@ -126,6 +131,8 @@ public class BoardDAO extends DAO{
 		return list;
 	}
 	
+	
+	// 게시판글열람
 	public Board getContent(int indexNo) {
 		Board board = null;
 		try {
@@ -150,6 +157,8 @@ public class BoardDAO extends DAO{
 		return board;
 	}
 	
+	
+	// 게시판글작성
 	public int boardAdd2(Board board) {
 		int result = 0;
 		try {
@@ -169,6 +178,7 @@ public class BoardDAO extends DAO{
 		return result;
 	}
 	
+	// 게시글수정
 	public int updateBoard2(Board board) {
 		int result = 0;
 		try {
@@ -190,6 +200,7 @@ public class BoardDAO extends DAO{
 		return result;
 	}
 	
+	//게시글삭제
 	public int boardDelete2(int indexNo) {
 		int result = 0;
 		try {

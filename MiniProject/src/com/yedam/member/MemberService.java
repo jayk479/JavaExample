@@ -12,6 +12,7 @@ public class MemberService {
 	
 	Scanner sc = new Scanner(System.in);
 	
+	// 로그인
 	public void login() {
 		Member member = new Member();
 		System.out.println("ID> ");
@@ -33,6 +34,7 @@ public class MemberService {
 		}	
 	}
 	
+	// 로그아웃
 	public void logout() {
 		if(memberInfo != null) {
 			memberInfo = null;
@@ -40,6 +42,7 @@ public class MemberService {
 		}
 	}
 	
+	// 회원가입
 	public void memberAdd() {
 		Member member = new Member();
 		System.out.println("ID> ");
@@ -48,14 +51,13 @@ public class MemberService {
 		String pw = sc.nextLine();
 		System.out.println("이름> ");
 		String name = sc.nextLine();
-//		System.out.println("생년월일> ");
-//		String birth = sc.nextLine();
-		
+		System.out.println("생년월일(YY/MM/DD)> ");
+		String birth = sc.nextLine();
 		
 		member.setId(id);
 		member.setPw(pw);
 		member.setMemberName(name);
-		//member.setBirth(birth);
+		member.setBirth(birth);
 		
 		int result = MemberDAO.getInstance().memberAdd(member);
 		if(result == 1) {
@@ -64,9 +66,9 @@ public class MemberService {
 		}else {
 			System.out.println("회원가입실패");
 		}
-		
 	}
 	
+	// 회원전체조회
 	public void getMemberList(){
 		List<Member> list = MemberDAO.getInstance().getMemberList();
 		for(int i = 0; i < list.size(); i++) {
@@ -76,27 +78,38 @@ public class MemberService {
 			System.out.print("ID : " + list.get(i).getId()+"\n");
 		}
 	}
-
+	
+	// 회원권한수정
 	public void updateMemberGrade() {
 		Member member = new Member();
 		
-		System.out.println("번호> ");
-		int memberId = Integer.parseInt(sc.nextLine());
-		System.out.println("등급> ");
-		String grade = sc.nextLine();
-		
-		member.setMemberId(memberId);
-		member.setGrade(grade);
-		
-		int result = MemberDAO.getInstance().updateMemberGrade(member);
-		
-		if(result > 0) {
-			System.out.println("수정성공");
-		}else {
-			System.out.println("수정실패");
+		while(true) {
+			System.out.println("번호> ");
+			int memberId = Integer.parseInt(sc.nextLine());
+			System.out.println("등급> ");
+			String grade = sc.nextLine();
+			
+			if(member.getMemberId() == memberId) {
+				System.out.println("해당회원없음");
+			}else {
+				if(grade.equals("BS")) {
+					member.setMemberId(memberId);
+					member.setGrade(grade);
+					int result = MemberDAO.getInstance().updateMemberGrade(member);
+					if(result > 0) {
+						System.out.println("수정성공");
+					}else {
+						System.out.println("수정실패");
+					}
+				}else {
+					System.out.println("적용되는권한아님");
+				}
+			}
+			break;
 		}
-
 	}
+	
+	// 회원개인정보수정
 	public void updateMemberInfo() {
 		
 //		Member member = new Member();
@@ -124,7 +137,7 @@ public class MemberService {
 //		}
 
 		Member member = new Member();
-		System.out.println("패스워드재입력> ");
+		System.out.println("비밀번호재입력> ");
 		String pw = sc.nextLine();
 		System.out.println("수정할메일> ");
 		String mail = sc.nextLine();
@@ -144,6 +157,7 @@ public class MemberService {
 		
 	}
 	
+	// 탈퇴
 	public void memberDelete() {
 		System.out.println("비밀번호재입력> ");
 		String memberPw = sc.nextLine();
@@ -161,16 +175,36 @@ public class MemberService {
 	
 	}
 	
+	// 강제탈퇴
 	public void memberDelete2() {
+		
 		System.out.println("삭제할멤버아이디> ");
 		int memberId = Integer.parseInt(sc.nextLine());
 		int result = MemberDAO.getInstance().memberDelete2(memberId);
 		if(result > 0) {
 			System.out.println("강제탈퇴완료");
 		}else {
-			System.out.println("강제탈퇴실패");
+			System.out.println("해당회원없음");
 		}
 	}
-
+//		Member member = new Member();
+//		while(true) {
+//		System.out.println("번호> ");
+//		int memberId = Integer.parseInt(sc.nextLine());
+//		
+//		if(member.getMemberId() == memberId) {
+//			System.out.println("해당회원없음");
+//		}else {
+//			member.setMemberId(memberId);
+//			int result = MemberDAO.getInstance().memberDelete2(memberId);
+//			if(result > 0) {
+//				System.out.println("강제탈퇴완료");
+//			}else {
+//				System.out.println("강제탈퇴실패");
+//			}
+//		}
+//		//break;
+//		}
+//	}
 	
 }

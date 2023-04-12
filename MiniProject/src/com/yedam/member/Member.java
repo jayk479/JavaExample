@@ -9,7 +9,7 @@ public class Member {
 
 	private int memberId; //영구결번해그냥
 	private String memberName;
-	private Date birth;
+	private String birth;
 	private int departmentId;
 	private String departmentName;
 	private String mail;

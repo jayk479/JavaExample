@@ -17,6 +17,7 @@ public class MemberDAO extends DAO{
 		return memberDao;
 	}
 	
+	// 로그인
 	public Member login(String id) {
 		Member member = null;
 		try {
@@ -42,15 +43,17 @@ public class MemberDAO extends DAO{
 		return member; 
 	}
 	
+	// 회원가입
 	public int memberAdd(Member member) {
 		int result = 0;
 		try {
 			conn();
-			String sql = "INSERT INTO MEMBER (member_id, member_name, grade, id, pw) VALUES ((SELECT MAX(member_id)+1 FROM MEMBER), ?, 'NS', ?, ?)";
+			String sql = "INSERT INTO MEMBER (member_id, member_name, BIRTH, grade, id, pw) VALUES ((SELECT MAX(member_id)+1 FROM MEMBER), ?, ?,'NS', ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getMemberName());
-			pstmt.setString(2, member.getId());
-			pstmt.setString(3, member.getPw());
+			pstmt.setString(2, member.getBirth());
+			pstmt.setString(3, member.getId());
+			pstmt.setString(4, member.getPw());
 			
 			result = pstmt.executeUpdate();
 			
@@ -62,7 +65,7 @@ public class MemberDAO extends DAO{
 		return result;
 	}
 	
-
+	// 회원전체조회
 	public List<Member> getMemberList(){
 		List<Member> list = new ArrayList<>();
 		Member member = null;
@@ -89,6 +92,7 @@ public class MemberDAO extends DAO{
 		return list;
 	}
 	
+	// 회원권한수정
 	public int updateMemberGrade(Member member) {
 		int result = 0;
 		try {
@@ -109,14 +113,15 @@ public class MemberDAO extends DAO{
 		return result;
 	}
 	
-	public int updateMemberInfo(Member member, String memberPw) {
+	// 회원개인정보수정
+	public int updateMemberInfo(Member member, String memberId) {
 		int result = 0;
 	
 		try {
 			conn();
-			String sql = "SELECT * FROM MEMBER WHERE PW = ? ";
+			String sql = "SELECT * FROM MEMBER WHERE ID = ? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberPw);
+			pstmt.setString(1, memberId);
 			
 			result = pstmt.executeUpdate();
 			if(result > 0) {
@@ -137,6 +142,7 @@ public class MemberDAO extends DAO{
 		return result;
 	}
 	
+	// 탈퇴
 	public int memberDelete(String memberPw) {
 		int result = 0;
 		try {
@@ -154,6 +160,7 @@ public class MemberDAO extends DAO{
 		return result;
 	}
 
+	// 강제탈퇴
 	public int memberDelete2(int memberId) {
 		int result = 0;
 		try {

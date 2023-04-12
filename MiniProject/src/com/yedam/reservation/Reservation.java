@@ -4,9 +4,11 @@ import lombok.Data;
 
 @Data
 public class Reservation {
-	private int roomNo;
-	private String yoil;
-	private String time;
-	private boolean rsv;
-	private int rsvNo;
+	private int rsvId;
+	private int roomId;
+	private boolean rsvAble;
+	private String rsvDay;
+	private String rsvTime;
+	private String memberName;
 }
+
