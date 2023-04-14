@@ -1,14 +1,20 @@
 package com.yedam.reservation;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
-public class Reservation {
-	private int rsvId;
-	private int roomId;
-	private boolean rsvAble;
-	private String rsvDay;
-	private String rsvTime;
-	private String memberName;
+
+public class Reservation{
+	private String rsvId;
+	private Date rsvDate;
+	private String day;
+	private String time;
+	private int roomNo;
+	private int rsvAble;
+	private int memberId;
+	private int rentNo;
+	private String rsvMm;
 }
 

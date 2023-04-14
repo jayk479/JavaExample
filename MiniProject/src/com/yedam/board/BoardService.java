@@ -3,7 +3,13 @@ package com.yedam.board;
 import java.util.List;
 import java.util.Scanner;
 
+import com.yedam.app.BoardControl;
+import com.yedam.member.Member;
+import com.yedam.member.MemberService;
+
 public class BoardService {
+	
+	public static Board boardInfo = null;
 	
 	Scanner sc = new Scanner(System.in);
 	
@@ -17,7 +23,10 @@ public class BoardService {
 			System.out.print(list.get(i).getTitle()+"\t");
 			System.out.print(list.get(i).getContent()+"\t");
 			System.out.print(list.get(i).getMemberName()+"\t");
+			//System.out.print(list.get(i).getMemberId()+"\t");
+			
 			System.out.print(list.get(i).getWriteDate()+"\n");
+			
 		}
 	}
 	
@@ -56,6 +65,7 @@ public class BoardService {
 		
 		board.setTitle(title);
 		board.setContent(content);
+		board.setMemberId(MemberService.memberInfo.getMemberId());
 		
 		int result = BoardDAO.getInstance().boardAdd(board);
 		
@@ -86,13 +96,15 @@ public class BoardService {
 		System.out.println("=========================================================================");
 		for (int i = 0; i < list.size(); i++) {
 			System.out.print(list.get(i).getIndexNo()+"\t");
-			System.out.print(list.get(i).getTitle()+"\t");
+			System.out.print(list.get(i).getTitle()+"\t\t\t\t\t");
 			System.out.print(list.get(i).getWriteDate()+"\n");
+			
 		}
 	}
 	
 	// 게시판글열람
 	public void getContent() {
+		boardInfo = new Board();
 		System.out.println("글번호> ");
 		int indexNo = Integer.parseInt(sc.nextLine());
 		Board board = BoardDAO.getInstance().getContent(indexNo);
@@ -106,6 +118,11 @@ public class BoardService {
 			System.out.print(board.getWriteDate() + "\n");
 			System.out.println("=========================================================================");
 			System.out.println(board.getContent());
+			
+			boardInfo.setIndexNo(board.getIndexNo());
+			boardInfo.setMemberId(board.getMemberId());
+			boardInfo.setTitle(board.getTitle());
+		
 		}
 		
 	}
@@ -121,11 +138,14 @@ public class BoardService {
 		
 		board.setTitle(title);
 		board.setContent(content);
+		board.setMemberId(MemberService.memberInfo.getMemberId());
+		board.setMemberName(MemberService.memberInfo.getMemberName());
 		
 		int result = BoardDAO.getInstance().boardAdd2(board);
 		
 		if(result == 1) {
 			System.out.println("작성완료");
+			//System.out.println(board.getMemberId());
 			
 		}else {
 			System.out.println("작성실패");
@@ -134,8 +154,6 @@ public class BoardService {
 	
 	//게시글수정
 	public void updateBoard2() {
-		Board board = new Board();
-		
 		System.out.println("수정할글번호> ");
 		int indexNo = Integer.parseInt(sc.nextLine());
 		System.out.println("수정할제목> ");
@@ -143,29 +161,50 @@ public class BoardService {
 		System.out.println("수정할내용> ");
 		String content = sc.nextLine();
 		
-		board.setIndexNo(indexNo);
-		board.setTitle(title);
-		board.setContent(content);
+		Board board = BoardDAO.getInstance().getContent(indexNo);
+		int result = 0;
 		
-		int result = BoardDAO.getInstance().updateBoard2(board);
-		
-		if(result > 0) {
-			System.out.println("수정성공");
-		}else {
-			System.out.println("수정실패");
+		List<Board> list = BoardDAO.getInstance().getBoard2List();		
+		for (int i = 0; i <list.size(); i++) {
+			//System.out.println(list);
+			if(MemberService.memberInfo.getMemberId() == list.get(i).getMemberId()) {
+				board.setIndexNo(indexNo);
+				board.setTitle(title);
+				board.setContent(content);
+				board.setMemberId(MemberService.memberInfo.getMemberId());
+			}
 		}
+		result = BoardDAO.getInstance().updateBoard2(board);
+		 if(result > 0) {
+			 	System.out.println("수정완료");
+		 	}else {
+				System.out.println("수정실패");
+		 	}
 	}
 	
 	// 게시글삭제
 	public void boardDelete2() {
 		System.out.println("삭제게시글번호입력> ");
 		int indexNo = Integer.parseInt(sc.nextLine());
-		int result = BoardDAO.getInstance().boardDelete2(indexNo);
-		if(result > 0) {
-			System.out.println("삭제완료");
-		}else {
-			System.out.println("삭제실패");
+		
+		Board board = BoardDAO.getInstance().getContent(indexNo);
+//		boardInfo = new Board();
+		int result = 0;
+		
+		List<Board> list = BoardDAO.getInstance().getBoard2List();		
+		for (int i = 0; i <list.size(); i++) {
+		//System.out.println(list);
+			if(MemberService.memberInfo.getMemberId() == list.get(i).getMemberId()) {
+				board.setIndexNo(indexNo);
+				board.setMemberId(MemberService.memberInfo.getMemberId());
+			}
 		}
+		result = BoardDAO.getInstance().boardDelete2(board);
+		 if(result > 0) {
+			System.out.println("삭제완료");
+		 	}else {
+				System.out.println("삭제실패");
+		 	}
 	}
 
 }

@@ -16,6 +16,7 @@ public class Application {
 	
 	public void run() {
 		while(true) {
+		//System.out.println(MemberService.memberInfo);
 		System.out.println("1. 로그인 | 2. 회원가입 | 3. 프로그램종료");
 		System.out.println("입력> ");
 		menu = sc.nextLine();

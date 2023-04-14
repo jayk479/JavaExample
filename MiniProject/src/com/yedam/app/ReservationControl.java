@@ -20,11 +20,11 @@ public class ReservationControl {
 			System.out.println("입력> ");
 			menu = sc.nextLine();
 			if(menu.equals("1")) {
-				rs.showMeetingRooms();
+				//rs.showMeetingRooms();
 				//회의실선택->요일선택->시간선택
 				 rs.selectMeetingRoom();
 			}else if(menu.equals("2")) {
-				rs.getReservation();
+				 rs.getReservation();
 			}else if(menu.equals("3")) {
 				//rs.updateRervation();
 				rs.deleteRerevation();

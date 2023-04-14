@@ -34,6 +34,7 @@ public class MemberDAO extends DAO{
 				member.setPw(rs.getString("pw"));
 				member.setMemberName(rs.getString("member_name"));
 				member.setGrade(rs.getString("grade"));
+				member.setMemberId(rs.getInt("member_id"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,7 +42,7 @@ public class MemberDAO extends DAO{
 			disconn();
 		}
 		return member; 
-	}
+}
 	
 	// 회원가입
 	public int memberAdd(Member member) {
@@ -125,11 +126,11 @@ public class MemberDAO extends DAO{
 			
 			result = pstmt.executeUpdate();
 			if(result > 0) {
-				String sql2 = "UPDATE MEMBER SET MAIL = ? , ADDRESS = ? WHERE PW = ?";
+				String sql2 = "UPDATE MEMBER SET MAIL = ? , ADDRESS = ? WHERE ID = ?";
 				pstmt = conn.prepareStatement(sql2);
 				pstmt.setString(1, member.getMail());
 				pstmt.setString(2, member.getAddress());
-				pstmt.setString(3, member.getPw());
+				pstmt.setString(3, member.getId());
 				
 				result = pstmt.executeUpdate();
 			}
@@ -143,13 +144,13 @@ public class MemberDAO extends DAO{
 	}
 	
 	// 탈퇴
-	public int memberDelete(String memberPw) {
+	public int memberDelete(String id) {
 		int result = 0;
 		try {
 			conn();
-			String sql = "DELETE FROM MEMBER WHERE PW = ?";
+			String sql = "DELETE FROM MEMBER WHERE ID = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberPw);
+			pstmt.setString(1, id);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {

@@ -21,7 +21,7 @@ public class BoardControl {
 	
 	private void job() {
 		while(true) {
-		System.out.println("1. 공지사항읽기 | 2. 공지사항수정 | 3. 공지사항작성 | 4. 공지사항삭제 | 5. 돌아가기");
+		System.out.println("1. 공지사항조회 | 2. 공지사항수정 | 3. 공지사항작성 | 4. 공지사항삭제 | 5. 돌아가기");
 		System.out.println("입력> ");
 		menu = sc.nextLine();			
 			if(menu.equals("1")) {

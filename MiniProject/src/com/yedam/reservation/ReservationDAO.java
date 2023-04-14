@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yedam.common.DAO;
-import com.yedam.member.MemberService;
+
 
 public class ReservationDAO extends DAO{
 	
@@ -18,21 +18,440 @@ public class ReservationDAO extends DAO{
 		return reservationDao;
 	}
 	
-	public List<Reservation> showMeetingRooms1() {
+	public List<Reservation> showRooms1(){
 		List<Reservation> list = new ArrayList<>();
-		Reservation reservation = null;
+		Reservation rsv = null;
 		try {
 			conn();
-			String sql = "select * from reservation where room_id = 1 and rsv_able = 0";
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 1 AND DAY = '월'ORDER BY RENT_NO";
 			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	public List<Reservation> showRooms2(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 1 AND DAY = '화' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms3(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 1 AND DAY = '수' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms4(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 1 AND DAY = '목' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms5(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 1 AND DAY = '금' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms6(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 2 AND DAY = '월' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms7(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 2 AND DAY = '화' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms8(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 2 AND DAY = '수' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms9(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 2 AND DAY = '목' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms10(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 2 AND DAY = '금' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showRooms11(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 3 AND DAY = '월' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	public List<Reservation> showRooms12(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 3 AND DAY = '화' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	public List<Reservation> showRooms13(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 3 AND DAY = '수' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	public List<Reservation> showRooms14(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 3 AND DAY = '목' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	public List<Reservation> showRooms15(){
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 3 AND DAY = '금' ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, rsv.getRoomNo());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				rsv.setRsvMm(rs.getString("RSV_MM"));
+				
+				list.add(rsv);
+			} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	public List<Reservation> showMeetingRooms1() {
+		List<Reservation> list = new ArrayList<>();
+		Reservation rsv = null;
+		try {
+			conn();
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 1 ORDER BY RENT_NO";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rsv.getRoomNo());
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				reservation = new Reservation();
-				reservation.setRoomId(rs.getInt("ROOM_ID"));
-				reservation.setRsvDay(rs.getString("RSV_DAY"));
-				reservation.setRsvTime(rs.getString("RSV_TIME"));
-				list.add(reservation);
+				rsv = new Reservation();
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				
+				list.add(rsv);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,20 +460,24 @@ public class ReservationDAO extends DAO{
 		}
 		return list;
 	}
+	
 	public List<Reservation> showMeetingRooms2() {
 		List<Reservation> list = new ArrayList<>();
 		Reservation rsv = null;
 		try {
 			conn();
-			String sql = "select DISTINCT rsv_day, rsv_time from reservation where room_id = 2 and rsv_able = 0";
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 2 AND RSV_ABLE = 0 ORDER BY RENT_NO";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				rsv = new Reservation();
-				rsv.setRoomId(rs.getInt("ROOM_ID"));
-				rsv.setRsvDay(rs.getString("RSV_DAY"));
-				rsv.setRsvTime(rs.getString("RSV_TIME"));
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				
 				list.add(rsv);
 			}
 		} catch (Exception e) {
@@ -70,15 +493,18 @@ public class ReservationDAO extends DAO{
 		Reservation rsv = null;
 		try {
 			conn();
-			String sql = "select * from reservation where room_id = 3 and rsv_able = 0";
+			String sql = "SELECT * FROM MEETINGROOM WHERE ROOM_NO = 3 AND RSV_ABLE = 0 ORDER BY RENT_NO";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				rsv = new Reservation();
-				rsv.setRoomId(rs.getInt("ROOM_ID"));
-				rsv.setRsvDay(rs.getString("RSV_DAY"));
-				rsv.setRsvTime(rs.getString("RSV_TIME"));
+				rsv.setRoomNo(rs.getInt("ROOM_NO"));
+				rsv.setDay(rs.getString("DAY"));
+				rsv.setTime(rs.getString("TIME"));
+				rsv.setRsvAble(rs.getInt("RSV_ABLE"));
+				rsv.setRentNo(rs.getInt("RENT_NO"));
+				
 				list.add(rsv);
 			}
 		} catch (Exception e) {
@@ -88,19 +514,69 @@ public class ReservationDAO extends DAO{
 		}
 		return list;
 	}
+	
+//	public List<Reservation> showMeetingRooms2() {
+//		List<Reservation> list = new ArrayList<>();
+//		Reservation rsv = null;
+//		try {
+//			conn();
+//			String sql = "select DISTINCT rsv_day, rsv_time from reservation where room_id = 2 and rsv_able = 0";
+//			pstmt = conn.prepareStatement(sql);
+//			rs = pstmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				rsv = new Reservation();
+//				rsv.setRoomNo(rs.getInt("ROOM_ID"));
+//				rsv.setDay(rs.getString("RSV_DAY"));
+//				rsv.setTime(rs.getString("RSV_TIME"));
+//				list.add(rsv);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			disconn();
+//		}
+//		return list;
+//	}
+//	
+//	public List<Reservation> showMeetingRooms3() {
+//		List<Reservation> list = new ArrayList<>();
+//		Reservation rsv = null;
+//		try {
+//			conn();
+//			String sql = "select * from reservation where room_id = 3 and rsv_able = 0";
+//			pstmt = conn.prepareStatement(sql);
+//			rs = pstmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				rsv = new Reservation();
+//				rsv.setRoomNo(rs.getInt("ROOM_ID"));
+//				rsv.setDay(rs.getString("RSV_DAY"));
+//				rsv.setTime(rs.getString("RSV_TIME"));
+//				list.add(rsv);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			disconn();
+//		}
+//		return list;
+//	}
 	public int selectMeetingRoom(Reservation rsv) {
 		int result = 0;
 		try {
 			conn();
-			String sql = "UPDATE RESERVATION SET MEMBER_NAME = ?, RSV_ABLE = 1 WHERE ROOM_ID = ? AND RSV_DAY = ? AND RSV_TIME = ?";
+			//예약번호생성확인하기
+			String sql = "UPDATE MEETINGROOM SET RSV_ABLE = 1, RSV_MM = '●', MEMBER_ID = ? WHERE ROOM_NO = ? AND DAY = ? AND TIME = ? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, rsv.getMemberName());
-			pstmt.setInt(2, rsv.getRoomId());
-			pstmt.setString(3, rsv.getRsvDay());
-			pstmt.setString(4, rsv.getRsvTime());
+
+			pstmt.setInt(1, rsv.getMemberId());
+			pstmt.setInt(2, rsv.getRoomNo());
+			pstmt.setString(3, rsv.getDay());
+			pstmt.setString(4, rsv.getTime());
 			
 			result = pstmt.executeUpdate();
-			
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -109,19 +585,19 @@ public class ReservationDAO extends DAO{
 		return result;
 	}
 	
-	public Reservation getReservation(String memberName) {
+	public Reservation getReservation(int memberId) {
 		Reservation rsv = null;
 		try {
 			conn();
-			String sql = "SELECT * FROM RESERVATION WHERE MEMBER_NAME = ?";
+			String sql = "SELECT * FROM MEETINGROOM WHERE MEMBER_ID = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberName);
+			pstmt.setInt(1, memberId);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				rsv = new Reservation();	
-				rsv.setRoomId(rs.getInt("room_id"));
-				rsv.setRsvDay(rs.getString("rsv_day"));
-				rsv.setRsvTime(rs.getString("rsv_time"));
+				rsv.setRoomNo(rs.getInt("room_NO"));
+				rsv.setDay(rs.getString("day"));
+				rsv.setTime(rs.getString("time"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -130,42 +606,42 @@ public class ReservationDAO extends DAO{
 		}
 		return rsv;
 	}
-	
-	public int updateRerevation(Reservation rsv) {
-		int result = 0;
-		try {
-			conn();
-			String sql = "UPDATE RESERVATION SET RSV_ABLE = 0, MEMBER_NAME = NULL WHERE MEMBER_NAME = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, rsv.getMemberName());
-			
-			result = pstmt.executeUpdate();
-				if(result > 0) {
-					String sql2 = "UPDATE RESERVATION SET MEMBER_NAME = ?, RSV_ABLE = 1 WHERE ROOM_ID = ? AND RSV_DAY = ? AND RSV_TIME = ?";
-					pstmt = conn.prepareStatement(sql2);
-					pstmt.setString(1, rsv.getMemberName());
-					pstmt.setInt(2, rsv.getRoomId());
-					pstmt.setString(3, rsv.getRsvDay());
-					pstmt.setString(4, rsv.getRsvTime());
-					
-					result = pstmt.executeUpdate();
-				}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			disconn();
-		}
-		
-		return result;
-	}
+
+//	public int updateRerevation(Reservation rsv) {
+//		int result = 0;
+//		try {
+//			conn();
+//			String sql = "UPDATE MEETINGROOM SET RSV_ABLE = 0, MEMBER_ID = NULL WHERE MEMBER_ID = ?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setInt(1, rsv.getMemberId());
+//			
+//			result = pstmt.executeUpdate();
+//				if(result > 0) {
+//					String sql2 = "UPDATE MEETINGROOM SET MEMBER_ID = ?, RSV_ABLE = 1 WHERE ROOM_NO = ? AND DAY = ? AND TIME = ?";
+//					pstmt = conn.prepareStatement(sql2);
+//					pstmt.setInt(1, rsv.getMemberId());
+//					pstmt.setInt(2, rsv.getRoomNo());
+//					pstmt.setString(3, rsv.getDay());
+//					pstmt.setString(4, rsv.getTime());
+//					
+//					result = pstmt.executeUpdate();
+//				}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			disconn();
+//		}
+//		
+//		return result;
+//	}
 	
 	public int deleteRerevation(Reservation rsv) {
 		int result = 0;
 		try {
 			conn();
-			String sql = "UPDATE RESERVATION SET RSV_ABLE = 0, MEMBER_NAME = NULL WHERE MEMBER_NAME = ?";
+			String sql = "UPDATE MEETINGROOM SET RSV_ABLE = 0, RSV_MM = '○', MEMBER_ID = NULL WHERE MEMBER_ID = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, rsv.getMemberName());
+			pstmt.setInt(1, rsv.getMemberId());
 			
 			result = pstmt.executeUpdate();
 				

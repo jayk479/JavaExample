@@ -23,7 +23,7 @@ public class BoardDAO extends DAO{
 		
 		try {
 			conn();
-			String sql = "SELECT * FROM BOARD1";
+			String sql = "SELECT * FROM BOARD ORDER BY INDEX_NO";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -32,7 +32,8 @@ public class BoardDAO extends DAO{
 				board1.setIndexNo(rs.getInt("index_no"));
 				board1.setTitle(rs.getString("title"));
 				board1.setContent(rs.getString("content"));
-				board1.setMemberName(rs.getString("writer"));
+				board1.setMemberId(rs.getInt("member_id"));
+				board1.setMemberName(rs.getString("MEMBER_NAME"));
 				board1.setWriteDate(rs.getDate("write_date"));
 				list.add(board1);
 			}
@@ -49,7 +50,7 @@ public class BoardDAO extends DAO{
 		int result = 0;
 		try {
 			conn();
-			String sql = "UPDATE BOARD1 SET TITLE = ?, CONTENT = ? WHERE INDEX_NO = ?";
+			String sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ? WHERE INDEX_NO = ?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, board.getTitle());
@@ -71,10 +72,11 @@ public class BoardDAO extends DAO{
 		int result = 0;
 		try {
 			conn();
-			String sql = "INSERT INTO BOARD1 VALUES ((SELECT MAX(INDEX_NO)+1 FROM BOARD1), ?, ?, 'ADMIN', SYSDATE)";
+			String sql = "INSERT INTO BOARD VALUES ((SELECT MAX(INDEX_NO)+1 FROM BOARD), ?, ?, ?,'ADMIN', SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getMemberId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -91,7 +93,7 @@ public class BoardDAO extends DAO{
 		int result = 0;
 		try {
 			conn();
-			String sql = "DELETE FROM BOARD1 WHERE INDEX_NO = ?";
+			String sql = "DELETE FROM BOARD WHERE INDEX_NO = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, indexNo);
 			
@@ -112,15 +114,16 @@ public class BoardDAO extends DAO{
 		
 		try {
 			conn();
-			String sql = "SELECT INDEX_NO2, TITLE2, WRITE_DATE2 FROM BOARD2";
+			String sql = "SELECT INDEX_NO, TITLE, WRITE_DATE, MEMBER_ID FROM BOARD2 ORDER BY INDEX_NO";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				board2 = new Board();
-				board2.setIndexNo(rs.getInt("index_no2"));
-				board2.setTitle(rs.getString("title2"));
-				board2.setWriteDate(rs.getDate("write_date2"));
+				board2.setIndexNo(rs.getInt("index_no"));
+				board2.setTitle(rs.getString("title"));
+				board2.setWriteDate(rs.getDate("write_date"));
+				board2.setMemberId(rs.getInt("member_id"));
 				list.add(board2);
 			}
 		} catch (Exception e) {
@@ -137,17 +140,18 @@ public class BoardDAO extends DAO{
 		Board board = null;
 		try {
 			conn();
-			String sql = "SELECT * FROM BOARD2 WHERE INDEX_NO2 = ?";
+			String sql = "SELECT * FROM BOARD2 WHERE INDEX_NO = ? ORDER BY INDEX_NO";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, indexNo);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				board = new Board();
-				board.setIndexNo(rs.getInt("index_no2"));
-				board.setTitle(rs.getString("title2"));
-				board.setContent(rs.getString("content2"));
-				board.setWriteDate(rs.getDate("write_date2"));
+				board.setIndexNo(rs.getInt("index_no"));
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content"));
+				board.setWriteDate(rs.getDate("write_date"));
+				board.setMemberId(rs.getInt("member_id"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,10 +167,12 @@ public class BoardDAO extends DAO{
 		int result = 0;
 		try {
 			conn();
-			String sql = "INSERT INTO BOARD2 VALUES ((SELECT MAX(INDEX_NO2)+1 FROM BOARD2), ?, ?, SYSDATE)";
+			String sql = "INSERT INTO BOARD2 VALUES ((SELECT MAX(INDEX_NO)+1 FROM BOARD2), ?, ?, ?, ?, SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getMemberId());
+			pstmt.setString(4, board.getMemberName());
 			
 			result = pstmt.executeUpdate();
 			
@@ -183,12 +189,14 @@ public class BoardDAO extends DAO{
 		int result = 0;
 		try {
 			conn();
-			String sql = "UPDATE BOARD2 SET TITLE2 = ?, CONTENT2 = ? WHERE INDEX_NO2 = ?";
+			
+			String sql = "UPDATE BOARD2 SET TITLE = ?, CONTENT = ? WHERE INDEX_NO = ? AND MEMBER_ID = ?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
 			pstmt.setInt(3, board.getIndexNo());
+			pstmt.setInt(4, board.getMemberId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -201,13 +209,15 @@ public class BoardDAO extends DAO{
 	}
 	
 	//게시글삭제
-	public int boardDelete2(int indexNo) {
+	public int boardDelete2(Board board) {
 		int result = 0;
 		try {
 			conn();
-			String sql = "DELETE FROM BOARD2 WHERE INDEX_NO2 = ?";
+		
+			String sql = "DELETE FROM BOARD2 WHERE INDEX_NO = ? and MEMBER_ID = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, indexNo);
+			pstmt.setInt(1, board.getIndexNo());
+			pstmt.setInt(2, board.getMemberId());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -215,8 +225,8 @@ public class BoardDAO extends DAO{
 		}finally {
 			disconn();
 		}
-		
 		return result;
+	
 	}
 	
 }

@@ -18,6 +18,7 @@ public class MemberControl {
 	}
 	
 	public void job() {
+		
 		while(true) {
 			menu();
 			if(MemberService.memberInfo.getGrade().equals("A")){
@@ -33,6 +34,7 @@ public class MemberControl {
 					System.out.println("오입력");
 				}
 			}else if(MemberService.memberInfo.getGrade().equals("BS")) {
+			
 				if(menu.equals("1")) {
 					new ReservationControl();
 				}else if(menu.equals("2")) {
@@ -50,6 +52,7 @@ public class MemberControl {
 					System.out.println("오입력");
 				}
 			}else if(MemberService.memberInfo.getGrade().equals("NS")) {
+				
 				if(menu.equals("1")) {
 					bs.getBoardList();
 				}else if(menu.equals("99")) {
@@ -64,12 +67,15 @@ public class MemberControl {
 	}
 	
 	private void menu() {
+		
 		if(MemberService.memberInfo.getGrade().equals("A")) {
 			System.out.println("1. 회원관리 | 2. 공지사항 | 99. 로그아웃");
 		}else if(MemberService.memberInfo.getGrade().equals("BS")) {
 			System.out.println("1. 예약 | 2. 게시판 | 3. 개인정보수정 | 4. 탈퇴 | 99. 로그아웃");
 		}else if(MemberService.memberInfo.getGrade().equals("NS")) {
 			System.out.println("1. 공지사항 | 99. 로그아웃");
+		}else { 
+			new Application();
 		}
 		System.out.println("입력> ");
 		menu = sc.nextLine();
@@ -77,7 +83,7 @@ public class MemberControl {
 	
 	private void memberMenu() {
 		while(true) {
-			System.out.println("1. 회원등급수정 | 2. 회원강제탈퇴 | 3. 돌아가기");
+			System.out.println("1. 회원권한수정 | 2. 회원강제탈퇴 | 3. 돌아가기");
 			System.out.println("입력> ");
 			menu = sc.nextLine();
 			if(menu.equals("1")) {
@@ -86,8 +92,6 @@ public class MemberControl {
 				ms.memberDelete2();
 			}else if(menu.equals("3")) {
 				break;
-			}else {
-				System.out.println("오입력");
 			}
 		}
 	}
