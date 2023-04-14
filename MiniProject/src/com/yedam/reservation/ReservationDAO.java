@@ -564,18 +564,30 @@ public class ReservationDAO extends DAO{
 //	}
 	public int selectMeetingRoom(Reservation rsv) {
 		int result = 0;
+		//int rsvAble = 0;
 		try {
 			conn();
-			//예약번호생성확인하기
-			String sql = "UPDATE MEETINGROOM SET RSV_ABLE = 1, RSV_MM = '●', MEMBER_ID = ? WHERE ROOM_NO = ? AND DAY = ? AND TIME = ? ";
-			pstmt = conn.prepareStatement(sql);
+		
+//			String sql = "SELECT * FROM MEETINGROOM WHERE RSV_ABLE = 1";
+//			pstmt = conn.prepareStatement(sql);
+		
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//				rsvAble = rs.getInt("RSV_ABLE");
+//			}
+//			if(rsvAble == 0) {
+				String sql2 = "UPDATE MEETINGROOM SET RSV_ABLE = 1, RSV_MM = '●', MEMBER_ID = ? WHERE ROOM_NO = ? AND DAY = ? AND TIME = ? ";
+				pstmt = conn.prepareStatement(sql2);
 
-			pstmt.setInt(1, rsv.getMemberId());
-			pstmt.setInt(2, rsv.getRoomNo());
-			pstmt.setString(3, rsv.getDay());
-			pstmt.setString(4, rsv.getTime());
+				pstmt.setInt(1, rsv.getMemberId());
+				pstmt.setInt(2, rsv.getRoomNo());
+				pstmt.setString(3, rsv.getDay());
+				pstmt.setString(4, rsv.getTime());
+				//pstmt.setInt(rsvAble, rsv.getRsvAble());
+				
+				result = pstmt.executeUpdate();
+	//		}
 			
-			result = pstmt.executeUpdate();
 		
 		} catch (Exception e) {
 			e.printStackTrace();

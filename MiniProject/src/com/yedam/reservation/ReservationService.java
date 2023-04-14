@@ -1,12 +1,14 @@
 package com.yedam.reservation;
 
-import java.util.Iterator;
+
 import java.util.List;
 import java.util.Scanner;
 
 import com.yedam.member.MemberService;
 
 public class ReservationService {
+	
+	
 	
 	Scanner sc = new Scanner(System.in);
 	
@@ -48,7 +50,7 @@ public class ReservationService {
 			//List<Reservation> list = ReservationDAO.getInstance().showMeetingRooms1();
 				if(roomNo == 1) {
 					List<Reservation> list = ReservationDAO.getInstance().showRooms1();
-					System.out.println("1회의실\n\t09:00~10:30\t10:30~12:00\t13:00~14:30\t14:30~16:00\t16:00~17:30\t17:30~19:00'");
+					System.out.println("1회의실\n\t09:00~10:30\t10:30~12:00\t13:00~14:30\t14:30~16:00\t16:00~17:30\t17:30~19:00");
 					for (int i = 0; i < 1; i++) {
 						System.out.print(list.get(i).getDay() + '\t');
 						for (int j = 0; j < 6; j++) {
@@ -96,7 +98,7 @@ public class ReservationService {
 //				}
 				}else if(roomNo == 2) {
 					List<Reservation> list = ReservationDAO.getInstance().showRooms6();
-					System.out.println("2회의실\n\t9:00~10:30\t10:30~12:00\t13:00~14:30\t14:30~16:00\t16:00~17:30\t17:30~19:00'");
+					System.out.println("2회의실\n\t9:00~10:30\t10:30~12:00\t13:00~14:30\t14:30~16:00\t16:00~17:30\t17:30~19:00");
 					for (int i = 0; i < 1; i++) {
 						System.out.print(list.get(i).getDay() + '\t');
 						for (int j = 0; j < 6; j++) {
@@ -235,13 +237,21 @@ public class ReservationService {
 			rsv.setDay(day);
 			rsv.setTime(time);
 			
-			int result = ReservationDAO.getInstance().selectMeetingRoom(rsv);
-			if(result > 0) {
-				System.out.println("예약성공");
-			}else {
-				System.out.println("예약실패");
-			}	
-	}
+//			int rsvAble = 0;
+//			reservationInfo = ReservationDAO.getInstance().getReservation(MemberService.memberInfo.getMemberId());
+//			rsvAble = ReservationService.reservationInfo.getRsvAble();
+			
+//			if(rsvAble != 0 ) {
+//				System.out.println("중복예약불가");
+//			}else if(rsvAble == 0) {
+				int result = ReservationDAO.getInstance().selectMeetingRoom(rsv);
+				if(result > 0) {
+					System.out.println("예약성공");
+				}else {
+					System.out.println("예약실패");
+				}
+			}
+//	}
 	
 	// 예약내역확인 1인 1개밖에 안 됨
 	public void getReservation() {

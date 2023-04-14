@@ -29,7 +29,7 @@ public class MemberControl {
 					new BoardControl();
 				}else if(menu.equals("99")) {
 					ms.logout();
-					new Application();
+					break;
 				}else {
 					System.out.println("오입력");
 				}
@@ -44,10 +44,10 @@ public class MemberControl {
 					ms.updateMemberInfo();
 				}else if(menu.equals("4")) {
 					ms.memberDelete();
-					new Application();
+					break;
 				}else if(menu.equals("99")) {
 					ms.logout();
-					new Application();
+					break;
 				}else {
 					System.out.println("오입력");
 				}
@@ -57,13 +57,12 @@ public class MemberControl {
 					bs.getBoardList();
 				}else if(menu.equals("99")) {
 					ms.logout();
-					new Application();
+					break;
 				}else {
 					System.out.println("오입력");
 				}
 			}
-		}
-		
+		}	
 	}
 	
 	private void menu() {
@@ -74,8 +73,6 @@ public class MemberControl {
 			System.out.println("1. 예약 | 2. 게시판 | 3. 개인정보수정 | 4. 탈퇴 | 99. 로그아웃");
 		}else if(MemberService.memberInfo.getGrade().equals("NS")) {
 			System.out.println("1. 공지사항 | 99. 로그아웃");
-		}else { 
-			new Application();
 		}
 		System.out.println("입력> ");
 		menu = sc.nextLine();
